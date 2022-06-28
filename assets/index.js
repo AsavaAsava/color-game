@@ -16,7 +16,7 @@ function checkColors(e) {
     statusEl.textContent = "Correct!"
     changeColors(colorsBlocks[pickedColor].style.backgroundColor)
     heading.style.backgroundColor = colorsBlocks[pickedColor].style.backgroundColor
-    setTimeout(resetGame,3000)
+    setTimeout(resetGame,1000)
   }
 else {
   this.style.backgroundColor = colorsEl.style.backgroundColor
