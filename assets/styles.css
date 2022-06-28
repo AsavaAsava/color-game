@@ -3,9 +3,7 @@ body {
   text-align: center;
   margin: 10px;
 }
-.mainbody {
-  /* display: flex; */
-}
+
 @media (min-width: 768px) {
   body {
     font-size: 20px;
@@ -19,8 +17,6 @@ h1 {
       w
   } */
 
-main {
-}
 
 .rgb {
   font-size: 1.4rem;
@@ -36,11 +32,12 @@ main {
   max-width: 100vw;
   margin: auto;
   padding: 20px;
+  background-color: white;
 }
 .colors__block {
   height: 150px;
   width: 50%;
-  background: #ddd;
+  background: rgb(255, 255, 255);
   cursor: pointer;
   transition: background 0.4s ease;
   border-radius: 10px;

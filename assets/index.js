@@ -1,6 +1,8 @@
-var diffEls = document.querySelectorAll(".diff__btn");
-var diffEl = document.querySelector(".diff__btn.active").innerHTML;
-var n = diffEl;
+const set6btn = document.querySelector("#btn6")
+const set9btn = document.querySelector("#btn9")
+const heading = document.querySelector("#heading")
+var n = 6;
+var pickedColor;
 var colorsEl = document.querySelector(".colors");
 var colorsBlocks;
 var rgbEl = document.querySelector(".rgb");
@@ -10,7 +12,19 @@ createBlocks(n);
 resetGame();
 
 function checkColors(e) {
-  // your code here
+  if( this.style.backgroundColor == colorsBlocks[pickedColor].style.backgroundColor  ){
+    statusEl.textContent = "Correct!"
+    changeColors(colorsBlocks[pickedColor].style.backgroundColor)
+    heading.style.backgroundColor = colorsBlocks[pickedColor].style.backgroundColor
+    setTimeout(resetGame,3000)
+  }
+else {
+  this.style.backgroundColor = colorsEl.style.backgroundColor
+  statusEl.textContent = "Try Again";
+  setTimeout(() => {
+    statusEl.innerHTML =
+    "Try to guess the right color based on the RGB value by clicking on the blocks.";}, 2000)
+}
 }
 
 function resetGame() {
@@ -23,6 +37,7 @@ function resetGame() {
   setColors();
   statusEl.innerHTML =
     "Try to guess the right color based on the RGB value by clicking on the blocks.";
+  heading.style.backgroundColor = "white"
 }
 
 function setColors() {
@@ -32,7 +47,7 @@ function setColors() {
 }
 
 function pickColors() {
-  for (var i = 0; i < n; i++) {
+  for (var i = 0; i < 9; i++) {
     colors.push(randomColor());
   }
 }
@@ -45,10 +60,11 @@ function random(r) {
   return Math.floor(Math.random() * r);
 }
 
-function setNumberOfTiles(e) {
-  // your code here
+function changeColors(color) {
+    for (var i = 0; i < colorsBlocks.length; i++) {
+      colorsBlocks[i].style.backgroundColor = color;
+    }
 }
-
 function createBlocks(num) {
   colorsEl.innerHTML = "";
 
@@ -62,4 +78,32 @@ function createBlocks(num) {
   for (var i = 0; i < colorsBlocks.length; i++) {
     colorsBlocks[i].addEventListener("click", checkColors);
   }
+}
+set6btn.style.backgroundColor = "black"
+set6btn.style.color = "white"
+set6btn.style.borderColor = "black"
+
+set6btn.addEventListener("click",() => {
+  n = 6
+  activateButton(set6btn)
+  deactivateButton(set9btn)
+  resetGame();
+})
+
+set9btn.addEventListener("click",() => {
+  n = 9
+  activateButton(set9btn)
+  deactivateButton(set6btn)
+  resetGame();
+})
+let activateButton =  (el) => {
+    el.style.backgroundColor = "black"
+    el.style.color = "white"
+    el.style.borderColor = "black"
+}
+
+let deactivateButton =  (el) => {
+  el.style.backgroundColor = "white"
+    el.style.color = "black"
+    el.style.borderColor = "black"
 }
