@@ -6,37 +6,34 @@ var pickedColor;
 var colorsEl = document.querySelector(".colors");
 var colorsBlocks;
 var rgbEl = document.querySelector(".rgb");
-var statusEl = document.querySelector(".status");
+var statusEl = document.querySelector("#indicatorStat");
 var colors = [];
 createBlocks(n);
 resetGame();
+alert("Game Will Reset Automatically in 2 Seconds after Correct Guess")
 
 function checkColors(e) {
   if( this.style.backgroundColor == colorsBlocks[pickedColor].style.backgroundColor  ){
-    statusEl.textContent = "Correct!"
+    statusEl.innerHTML = "Correct!"
     changeColors(colorsBlocks[pickedColor].style.backgroundColor)
     heading.style.backgroundColor = colorsBlocks[pickedColor].style.backgroundColor
-    setTimeout(resetGame,1000)
+    setTimeout(resetGame,2000)
   }
 else {
   this.style.backgroundColor = colorsEl.style.backgroundColor
-  statusEl.textContent = "Try Again";
-  setTimeout(() => {
-    statusEl.innerHTML =
-    "Try to guess the right color based on the RGB value by clicking on the blocks.";}, 2000)
+  statusEl.innerHTML = "Try Again";
 }
 }
 
 function resetGame() {
   createBlocks(n);
+  statusEl.innerHTML = "  "
   document.body.style.color = "black";
   colors = [];
   pickColors();
   pickedColor = random(n);
   rgbEl.innerHTML = colors[pickedColor];
   setColors();
-  statusEl.innerHTML =
-    "Try to guess the right color based on the RGB value by clicking on the blocks.";
   heading.style.backgroundColor = "white"
 }
 
